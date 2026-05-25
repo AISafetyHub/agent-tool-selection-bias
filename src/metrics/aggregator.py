@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 from collections import defaultdict
 
-from .hsr import compute_hsr_curve, compute_over_privilege_curve
+from .opur import compute_opur_curve, compute_over_privilege_curve
 from .ped import compute_ped
 
 logger = logging.getLogger(__name__)
@@ -34,9 +34,9 @@ def aggregate(eval_logs_dir: Path, k_values: list[int] = None) -> dict:
     """Compute all metrics aggregated across multiple dimensions.
 
     Returns nested dict:
-      overall: {model: {hsr@k, ped}}
-      by_domain: {model: {domain: {hsr@k, ped}}}
-      by_type: {model: {type: {hsr@k, ped}}}
+      overall: {model: {opur@k, ped}}
+      by_domain: {model: {domain: {opur@k, ped}}}
+      by_type: {model: {type: {opur@k, ped}}}
     """
     k_values = k_values or [1, 3, 5]
     model_logs = load_logs(eval_logs_dir)
@@ -46,7 +46,7 @@ def aggregate(eval_logs_dir: Path, k_values: list[int] = None) -> dict:
     for model, logs in model_logs.items():
         # Overall
         results["overall"][model] = {
-            "hsr": compute_hsr_curve(logs, k_values),
+            "opur": compute_opur_curve(logs, k_values),
             "over_privilege_rate": compute_over_privilege_curve(logs, k_values),
             "ped": compute_ped(logs),
             "total_scenarios": len(logs),
@@ -58,7 +58,7 @@ def aggregate(eval_logs_dir: Path, k_values: list[int] = None) -> dict:
             domain_groups[log.get("domain", "unknown")].append(log)
         results["by_domain"][model] = {
             domain: {
-                "hsr": compute_hsr_curve(dlogs, k_values),
+                "opur": compute_opur_curve(dlogs, k_values),
                 "over_privilege_rate": compute_over_privilege_curve(dlogs, k_values),
                 "ped": compute_ped(dlogs),
             }
@@ -71,7 +71,7 @@ def aggregate(eval_logs_dir: Path, k_values: list[int] = None) -> dict:
             type_groups[log.get("type", "unknown")].append(log)
         results["by_type"][model] = {
             etype: {
-                "hsr": compute_hsr_curve(tlogs, k_values),
+                "opur": compute_opur_curve(tlogs, k_values),
                 "over_privilege_rate": compute_over_privilege_curve(tlogs, k_values),
                 "ped": compute_ped(tlogs),
             }

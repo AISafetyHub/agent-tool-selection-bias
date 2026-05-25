@@ -23,7 +23,7 @@ evaluation:
   default_engine: custom
 
 metrics:
-  hsr_k_values: [1, 3, 5]
+  opur_k_values: [1, 3, 5]
 
 closed_loop:
   target_count_per_cell: 1

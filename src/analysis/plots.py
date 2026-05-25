@@ -10,19 +10,19 @@ import seaborn as sns
 matplotlib.use("Agg")
 
 
-def plot_hsr_curve(results: dict, k_values: list[int] = None, output_path: Path = None):
-    """HSR@k curve across models."""
+def plot_opur_curve(results: dict, k_values: list[int] = None, output_path: Path = None):
+    """OPUR@k curve across models."""
     k_values = k_values or [1, 3, 5]
     overall = results["overall"]
 
     fig, ax = plt.subplots(figsize=(8, 5))
     for model in sorted(overall):
-        ys = [overall[model]["hsr"].get(k, 0.0) for k in k_values]
+        ys = [overall[model]["opur"].get(k, 0.0) for k in k_values]
         ax.plot(k_values, ys, marker="o", label=model)
 
     ax.set_xlabel("k (turns)")
-    ax.set_ylabel("HSR@k")
-    ax.set_title("Higher-Privilege Switch Rate across Models")
+    ax.set_ylabel("OPUR@k")
+    ax.set_title("Over-Privileged Tool Use Rate across Models")
     ax.set_xticks(k_values)
     ax.set_ylim(0, 1.05)
     ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left", fontsize=7)
@@ -33,14 +33,14 @@ def plot_hsr_curve(results: dict, k_values: list[int] = None, output_path: Path 
 
 
 def plot_domain_heatmap(results: dict, k: int = 5, output_path: Path = None):
-    """Heatmap: model x domain HSR@k."""
+    """Heatmap: model x domain OPUR@k."""
     by_domain = results["by_domain"]
     models = sorted(by_domain)
     domains = sorted({d for m in by_domain.values() for d in m})
 
     matrix = []
     for model in models:
-        row = [by_domain[model].get(d, {}).get("hsr", {}).get(k, 0.0) for d in domains]
+        row = [by_domain[model].get(d, {}).get("opur", {}).get(k, 0.0) for d in domains]
         matrix.append(row)
 
     fig, ax = plt.subplots(figsize=(10, max(4, len(models) * 0.5)))
@@ -49,7 +49,7 @@ def plot_domain_heatmap(results: dict, k: int = 5, output_path: Path = None):
         xticklabels=domains, yticklabels=models, ax=ax,
         vmin=0, vmax=1,
     )
-    ax.set_title(f"HSR@{k} by Model and Domain")
+    ax.set_title(f"OPUR@{k} by Model and Domain")
     fig.tight_layout()
     if output_path:
         fig.savefig(output_path, bbox_inches="tight")
@@ -82,6 +82,6 @@ def generate_all_plots(results: dict, output_dir: Path, k_values: list[int] = No
     output_dir.mkdir(parents=True, exist_ok=True)
     k_values = k_values or [1, 3, 5]
 
-    plot_hsr_curve(results, k_values, output_dir / "hsr_curve.pdf")
+    plot_opur_curve(results, k_values, output_dir / "opur_curve.pdf")
     plot_domain_heatmap(results, k=max(k_values), output_path=output_dir / "domain_heatmap.pdf")
     plot_ped_distribution(results, output_dir / "ped_distribution.pdf")

@@ -42,7 +42,7 @@ Each test case contains the following fields:
 ### Evaluation Metrics
 
 When evaluating with this dataset, focus on:
-1. **HSR (Harmful Success Rate)**: Proportion of agents using risk tools
+1. **OPUR (Over-Privileged Tool Use Rate)**: Proportion of agents using risk tools
 2. **PED (Privilege Escalation Degree)**: Degree of privilege escalation
 3. **Task Completion**: Task completion rate
 
