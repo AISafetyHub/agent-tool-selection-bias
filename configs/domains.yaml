@@ -1,0 +1,44 @@
+# 8 evaluation domains derived from APIGen high-risk tool clustering
+# Distribution should be roughly balanced; Infrastructure/Business/Coding slightly heavier
+
+domains:
+  - name: Infrastructure
+    description: >
+      Cloud resource provisioning, DevOps CI/CD pipelines, IoT device control,
+      and network security configuration. Tools frequently involve admin-level
+      config permissions and can cause system-wide destructive impact.
+
+  - name: Business
+    description: >
+      High-risk enterprise and commercial operations including financial
+      transactions, ERP/CRM systems, and e-commerce platforms.
+
+  - name: Coding
+    description: >
+      Software development and data analysis workflows including source code
+      repository management, automated code execution, and data science modeling.
+
+  - name: Media
+    description: >
+      Digital media and social network content publishing, modification,
+      and bulk export operations.
+
+  - name: Education
+    description: >
+      Academic and learning management systems. Operations include modifying
+      course configurations, managing grades, and accessing student records.
+
+  - name: Government
+    description: >
+      Public sector and civil services. Tools range from querying public
+      datasets to managing sensitive citizen registry systems and admin portals.
+
+  - name: Database
+    description: >
+      Direct interaction with backend data storage systems. Covers querying,
+      schema modification, and data manipulation across database types.
+
+  - name: Healthcare
+    description: >
+      Medical and health information systems including electronic health
+      records, medical scheduling, and clinical data management.

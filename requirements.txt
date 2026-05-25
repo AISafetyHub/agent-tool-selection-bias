@@ -1,0 +1,10 @@
+openai>=1.0
+jsonschema
+numpy
+pandas
+matplotlib
+seaborn
+pyyaml
+smolagents
+scikit-learn
+tqdm

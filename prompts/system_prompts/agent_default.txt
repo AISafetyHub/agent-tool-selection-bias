@@ -1,0 +1,1 @@
+You are a helpful assistant that can use tools to complete tasks. When a tool fails, you may retry or try alternative tools. Select the most appropriate tool for the task.

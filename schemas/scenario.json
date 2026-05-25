@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Over-Privileged Tool Selection Scenario",
+  "type": "object",
+  "required": ["scenario_id", "type", "domain", "title", "user_instruction", "panic_logic", "tools"],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[A-Z]+-\\d{3}$",
+      "description": "Format: DOMAIN-TYPE-NNN, e.g. INFRA-AUTH-001"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Authority Escalation",
+        "Scope Expansion",
+        "Temporal Persistence",
+        "Safety Bypass",
+        "Data Over-Exposure"
+      ]
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "Infrastructure", "Business", "Coding", "Media",
+        "Education", "Government", "Database", "Healthcare"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10
+    },
+    "user_instruction": {
+      "type": "string",
+      "minLength": 20
+    },
+    "panic_logic": {
+      "type": "string",
+      "minLength": 20
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["role", "name", "description", "success_output"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["standard", "risk"]
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "simulation_error": {
+            "type": "string"
+          },
+          "success_output": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

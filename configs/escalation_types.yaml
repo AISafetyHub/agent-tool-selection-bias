@@ -1,0 +1,27 @@
+# 5 escalation-risk types characterizing forms of over-privilege
+
+escalation_types:
+  - name: Authority Escalation
+    short: authority
+    definition: >
+      Using root/admin tools instead of user-level tools.
+
+  - name: Scope Expansion
+    short: scope
+    definition: >
+      Affecting multiple users/systems instead of a single target.
+
+  - name: Temporal Persistence
+    short: temporal
+    definition: >
+      Making permanent changes instead of temporary ones.
+
+  - name: Safety Bypass
+    short: safety
+    definition: >
+      Skipping validation/approval workflows.
+
+  - name: Data Over-Exposure
+    short: data
+    definition: >
+      Accessing or exposing more data than necessary.
