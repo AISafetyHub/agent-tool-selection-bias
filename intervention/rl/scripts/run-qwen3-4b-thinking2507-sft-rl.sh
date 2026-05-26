@@ -1,13 +1,13 @@
 #!/bin/bash
-# Qwen3-4B Kaiyue SFT 基座：
-# /share/project/buyuyan/Agent/power-seeking/auto-pipeline/intervention/checkpoints/sft_qwen3_4b_base_lora_tools/sft_qwen3_4b_base_kaiyue
+# Qwen3-4B SFT base checkpoint example:
+# /path/to/intervention/checkpoints/sft_qwen3_4b_base_lora_tools/sft_qwen3_4b_base
 #
-# 首次需转 torch_dist：
+# First time: convert to torch_dist format:
 #   cd /root/slime && source scripts/models/qwen3-4B.sh
 #   PYTHONPATH=/root/Megatron-LM:/root/slime python3.12 tools/convert_hf_to_torch_dist.py \
 #       ${MODEL_ARGS[@]} \
-#       --hf-checkpoint /share/project/buyuyan/Agent/power-seeking/auto-pipeline/intervention/checkpoints/sft_qwen3_4b_base_lora_tools/sft_qwen3_4b_base_kaiyue \
-#       --save /root/slime-test/models/sft_qwen3_4b_base_kaiyue_torch_dist
+#       --hf-checkpoint /path/to/sft_checkpoint \
+#       --save /path/to/torch_dist_checkpoint
 #
 # W&B: Set WANDB_API_KEY environment variable before running
 # export WANDB_API_KEY=your_wandb_key_here
@@ -52,11 +52,11 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 PROJECT_ROOT="$(cd -- "${SCRIPT_DIR}/.." &>/dev/null && pwd)"
 source "${SCRIPT_DIR}/models/qwen3-4B-Thinking-2507.sh"
 
-HF_CKPT=${HF_CKPT:-"/share/project/buyuyan/Agent/power-seeking/auto-pipeline/intervention/checkpoints/sft_qwen3_4b_thinking2507_merged"}
-TORCH_DIST_CKPT=${TORCH_DIST_CKPT:-"/root/slime-test/models/sft_qwen3_4b_thinking2507_torch_dist"}
-SAVE_DIR=${SAVE_DIR:-"/root/slime-test/output_models/qwen3_4b_thinking2507_yuyan_rl_from_sft_0509"}
-PROMPT_DATA=${PROMPT_DATA:-"/share/project/buyuyan/Agent/power-seeking/auto-pipeline/intervention/data/slime_rl_prompt_data.jsonl"}
-PROMPT_DATA_EVAL=${PROMPT_DATA_EVAL:-"/share/project/buyuyan/Agent/power-seeking/auto-pipeline/intervention/data/slime_rl_prompt_data_eval.jsonl"}
+HF_CKPT=${HF_CKPT:-"/path/to/intervention/checkpoints/sft_qwen3_4b_thinking2507_merged"}
+TORCH_DIST_CKPT=${TORCH_DIST_CKPT:-"/path/to/models/sft_qwen3_4b_thinking2507_torch_dist"}
+SAVE_DIR=${SAVE_DIR:-"/path/to/output_models/qwen3_4b_thinking2507_rl_from_sft"}
+PROMPT_DATA=${PROMPT_DATA:-"/path/to/intervention/data/slime_rl_prompt_data.jsonl"}
+PROMPT_DATA_EVAL=${PROMPT_DATA_EVAL:-"/path/to/intervention/data/slime_rl_prompt_data_eval.jsonl"}
 
 CKPT_ARGS=(
    --hf-checkpoint ${HF_CKPT}

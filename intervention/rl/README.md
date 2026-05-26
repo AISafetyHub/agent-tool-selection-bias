@@ -13,7 +13,7 @@ rl/
 │   ├── slime_rl_prompt_data.jsonl       # Training prompts
 │   └── slime_rl_prompt_data_eval.jsonl  # Evaluation prompts
 └── scripts/              # Training scripts
-    ├── run-qwen3-4b-thinking2507-yuyan-sft-rl.sh  # Main training script
+    ├── run-qwen3-4b-thinking2507-sft-rl.sh  # Main training script
     └── models/           # Model configurations
         ├── qwen3-4B-Thinking-2507.sh
         └── qwen3-4B.sh
@@ -109,13 +109,13 @@ mkdir -p $SLIME_ROOT/configs
 cp -r configs/* $SLIME_ROOT/configs/
 
 # Copy training scripts
-cp scripts/run-qwen3-4b-thinking2507-yuyan-sft-rl.sh $SLIME_ROOT/scripts/
+cp scripts/run-qwen3-4b-thinking2507-sft-rl.sh $SLIME_ROOT/scripts/
 cp -r scripts/models/* $SLIME_ROOT/scripts/models/
 ```
 
 ### 2. Modify Training Script Paths
 
-Edit `run-qwen3-4b-thinking2507-yuyan-sft-rl.sh` to update the following paths:
+Edit `run-qwen3-4b-thinking2507-sft-rl.sh` to update the following paths:
 
 ```bash
 # Model checkpoint paths
@@ -146,7 +146,7 @@ PYTHONPATH=/path/to/Megatron-LM:$SLIME_ROOT python3.12 tools/convert_hf_to_torch
 
 ```bash
 cd $SLIME_ROOT
-bash scripts/run-qwen3-4b-thinking2507-yuyan-sft-rl.sh
+bash scripts/run-qwen3-4b-thinking2507-sft-rl.sh
 ```
 
 ## Training Configuration
