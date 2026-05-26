@@ -6,9 +6,9 @@ Rule-based checks + LLM-based case-by-case analysis for a sampled subset.
 Usage:
     python3 scripts/05_behavior_check.py \\
         --input-dir data/eval_runs/qwen_local/qwen3.5-9b \\
-        --base-url https://proxy.yijingwei.cc:8443/v1 \\
+        --base-url https://api.openai.com/v1 \\
         --api-key "Bearer sk-..." \\
-        --model "Qwen3.5-397B-FP8" \\
+        --model "gpt-4" \\
         --sample 15 \\
         --output data/behavior_report.md
 """
@@ -322,11 +322,11 @@ def render_report(stats: dict, llm_analyses: list[dict], model_name: str, input_
 def main():
     parser = argparse.ArgumentParser(description="Analyze model behavior from eval results")
     parser.add_argument("--input-dir", required=True, help="Directory with JSON result files")
-    parser.add_argument("--base-url", default="https://proxy.yijingwei.cc:8443/v1",
+    parser.add_argument("--base-url", default="https://api.openai.com/v1",
                         help="OpenAI-compatible API base URL")
-    parser.add_argument("--api-key", default="Bearer sk-f8d2b7e1a9c45b8d2e1f0a9b8c7d6e5f4a3b2c1d0e9f8a7b",
+    parser.add_argument("--api-key", default="",
                         help="API key (with or without 'Bearer ' prefix)")
-    parser.add_argument("--model", default="Qwen3.5-397B-FP8",
+    parser.add_argument("--model", default="gpt-4",
                         help="Model name to use for LLM analysis")
     parser.add_argument("--sample", type=int, default=10,
                         help="Number of cases to send to LLM for analysis (0 = skip LLM)")
