@@ -1,9 +1,16 @@
 # When Lower Privileges Suffice: Investigating Over-Privileged Tool Selection in LLM Agents
 
+<p align="center">
+  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv"></a>
+  <!-- <a href="https://github.com/Yuyan-B/OPTS"><img src="https://img.shields.io/badge/Code-GitHub-blue?style=flat-square&logo=github" alt="GitHub"></a>
+  <img src="https://img.shields.io/badge/EMNLP-Submission-green?style=flat-square" alt="EMNLP"> -->
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
+</p>
 
-
-**TOOLPRIVBENCH** · A benchmark for evaluating over-privileged tool selection in LLM agents  
-8 domains · 5 risk types · 544 validated scenarios
+<p align="center">
+  <b>TOOLPRIVBENCH</b> · A benchmark for evaluating over-privileged tool selection in LLM agents<br>
+  8 domains · 5 risk types · 544 validated scenarios
+</p>
 
 ---
 
@@ -11,7 +18,9 @@
 
 As LLM agents increasingly select tools autonomously, their choices among tools with **different privilege levels** become safety-critical. We identify and systematically study a previously underexplored risk: **over-privileged tool selection**, where agents choose or escalate to higher-privilege tools even when lower-privilege alternatives are fully sufficient.
 
-
+<p align="center">
+  <img src="assets/head.png" alt="Overview" width="700"/>
+</p>
 
 We study two behavioral manifestations:
 
