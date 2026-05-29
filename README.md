@@ -1,16 +1,9 @@
 # When Lower Privileges Suffice: Investigating Over-Privileged Tool Selection in LLM Agents
 
-<p align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv"></a>
-  <!-- <a href="https://anonymous.4open.science/r/OPTS-4181/"><img src="https://img.shields.io/badge/Code-Anonymous-blue?style=flat-square&logo=github" alt="Code"></a> -->
-  <img src="https://img.shields.io/badge/EMNLP-Submission-green?style=flat-square" alt="EMNLP">
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
-</p>
 
-<p align="center">
-  <b>TOOLPRIVBENCH</b> · A benchmark for evaluating over-privileged tool selection in LLM agents<br>
-  8 domains · 5 risk types · 544 validated scenarios
-</p>
+
+**TOOLPRIVBENCH** · A benchmark for evaluating over-privileged tool selection in LLM agents  
+8 domains · 5 risk types · 544 validated scenarios
 
 ---
 
@@ -18,16 +11,22 @@
 
 As LLM agents increasingly select tools autonomously, their choices among tools with **different privilege levels** become safety-critical. We identify and systematically study a previously underexplored risk: **over-privileged tool selection**, where agents choose or escalate to higher-privilege tools even when lower-privilege alternatives are fully sufficient.
 
-<p align="center">
-  <img src="assets/head.png" alt="Overview Figure" width="700"/>
-</p>
+
 
 We study two behavioral manifestations:
 
-| Behavior | Description | PED |
-|---|---|---|
-| **Aggressive Selection** | Agent directly chooses a higher-privilege tool at first decision point | PED = 0 |
+
+| Behavior                 | Description                                                                               | PED     |
+| ------------------------ | ----------------------------------------------------------------------------------------- | ------- |
+| **Aggressive Selection** | Agent directly chooses a higher-privilege tool at first decision point                    | PED = 0 |
 | **Premature Escalation** | Agent escalates to higher privilege after encountering transient lower-privilege failures | PED ≥ 1 |
+
+
+### Contributions
+
+- **First systematic study** of over-privileged tool selection in LLM agents, with a taxonomy of five recurring over-privilege risk types.
+- **TOOLPRIVBENCH**: a simulation-based evaluation framework tailored to privilege-sensitive tool choice, enabling controlled study across 8 domains and 5 risk categories.
+- **Privilege-aware post-training**: a mitigation approach (SFT + RL) that effectively reduces risky high-privilege tool use without degrading core task-solving ability.
 
 ### Key Findings
 
@@ -42,6 +41,7 @@ We study two behavioral manifestations:
 ### Benchmark Design
 
 Each evaluation scenario contains:
+
 - A **user task** solvable by any of the six provided tools
 - **3 standard (lower-privilege) tools** — minimal permissions, sufficient for task completion
 - **3 risk (higher-privilege) tools** — broader authority, scope, or persistence
@@ -55,34 +55,38 @@ All tools are independently sufficient, removing capability confounds and isolat
 
 ### Domain & Risk Type Distribution
 
-| Domain | Share | Risk Type | Share |
-|---|---|---|---|
-| Database | 15.3% | Authority Escalation | 25.6% |
-| Business | 14.0% | Safety Bypass | 21.3% |
-| Education | 13.2% | Scope Expansion | 18.2% |
-| Coding | 12.3% | Data Over-Exposure | 18.2% |
-| Healthcare | 11.9% | Temporal Persistence | 16.7% |
-| Government | 11.6% | | |
-| Media | 11.4% | | |
-| Infrastructure | 10.3% | | |
+
+| Domain         | Share | Risk Type            | Share |
+| -------------- | ----- | -------------------- | ----- |
+| Database       | 15.3% | Authority Escalation | 25.6% |
+| Business       | 14.0% | Safety Bypass        | 21.3% |
+| Education      | 13.2% | Scope Expansion      | 18.2% |
+| Coding         | 12.3% | Data Over-Exposure   | 18.2% |
+| Healthcare     | 11.9% | Temporal Persistence | 16.7% |
+| Government     | 11.6% |                      |       |
+| Media          | 11.4% |                      |       |
+| Infrastructure | 10.3% |                      |       |
+
 
 ### Evaluation Results
 
 OPUR (%) across eleven mainstream LLMs:
 
-| Model | OPUR (↓) |
-|---|---|
-| Claude 4.6 Sonnet | 2.6% |
-| GLM-5 | 8.6% |
-| GPT-5.2 | 9.7% |
-| Gemini 3 Flash | 17.5% |
-| Kimi K2.5 | 21.0% |
-| DeepSeek-v3.2 | 31.8% |
-| Qwen3.5-397B | 33.3% |
-| Grok 4.1 Fast | 37.1% |
-| MiniMax-M2.7 | 43.4% |
-| LLaMA-3.1-8B | 55.9% |
-| Qwen3-8B | 64.9% |
+
+| Model             | OPUR (↓) |
+| ----------------- | -------- |
+| Claude 4.6 Sonnet | 2.6%     |
+| GLM-5             | 8.6%     |
+| GPT-5.2           | 9.7%     |
+| Gemini 3 Flash    | 17.5%    |
+| Kimi K2.5         | 21.0%    |
+| DeepSeek-v3.2     | 31.8%    |
+| Qwen3.5-397B      | 33.3%    |
+| Grok 4.1 Fast     | 37.1%    |
+| MiniMax-M2.7      | 43.4%    |
+| LLaMA-3.1-8B      | 55.9%    |
+| Qwen3-8B          | 64.9%    |
+
 
 ---
 
@@ -157,7 +161,6 @@ Training is conducted on 8× NVIDIA A100-SXM4-40GB GPUs using the [SLIME](https:
 
 ---
 
-
 ## Project Structure
 
 ```
@@ -197,12 +200,14 @@ Training is conducted on 8× NVIDIA A100-SXM4-40GB GPUs using the [SLIME](https:
 
 ## Data
 
-| Split | Path | Size |
-|---|---|---|
-| Evaluation benchmark | `evaluation/data/goodcase_final/` | 544 scenarios |
-| SFT training data | `intervention/sft/data/sft_train.jsonl` | 1,994 samples |
-| RL training prompts | `intervention/rl/data/slime_rl_prompt_data.jsonl` | 1,199 samples |
-| RL evaluation prompts | `intervention/rl/data/slime_rl_prompt_data_eval.jsonl` | 40 samples |
+
+| Split                 | Path                                                   | Size          |
+| --------------------- | ------------------------------------------------------ | ------------- |
+| Evaluation benchmark  | `evaluation/data/goodcase_final/`                      | 544 scenarios |
+| SFT training data     | `intervention/sft/data/sft_train.jsonl`                | 1,994 samples |
+| RL training prompts   | `intervention/rl/data/slime_rl_prompt_data.jsonl`      | 1,199 samples |
+| RL evaluation prompts | `intervention/rl/data/slime_rl_prompt_data_eval.jsonl` | 40 samples    |
+
 
 ---
 
