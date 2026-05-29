@@ -2,8 +2,8 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv"></a>
-  <a href="https://anonymous.4open.science/r/OPTS-4181/"><img src="https://img.shields.io/badge/Code-Anonymous-blue?style=flat-square&logo=github" alt="Code"></a>
-  <img src="https://img.shields.io/badge/ACL-Submission-green?style=flat-square" alt="ACL">
+  <!-- <a href="https://anonymous.4open.science/r/OPTS-4181/"><img src="https://img.shields.io/badge/Code-Anonymous-blue?style=flat-square&logo=github" alt="Code"></a> -->
+  <img src="https://img.shields.io/badge/EMNLP-Submission-green?style=flat-square" alt="EMNLP">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
 </p>
 
@@ -19,7 +19,7 @@
 As LLM agents increasingly select tools autonomously, their choices among tools with **different privilege levels** become safety-critical. We identify and systematically study a previously underexplored risk: **over-privileged tool selection**, where agents choose or escalate to higher-privilege tools even when lower-privilege alternatives are fully sufficient.
 
 <p align="center">
-  <img src="https://via.placeholder.com/700x200?text=Figure:+Over-Privileged+Tool+Selection+in+LLM+Agents" alt="Overview Figure" width="700"/>
+  <img src="assets/head.png" alt="Overview Figure" width="700"/>
 </p>
 
 We study two behavioral manifestations:
@@ -162,6 +162,8 @@ Training is conducted on 8× NVIDIA A100-SXM4-40GB GPUs using the [SLIME](https:
 
 ```
 .
+├── assets/                       # README figures
+│   └── head.png
 ├── configs/                      # Global configuration files
 │   ├── pipeline.yaml             # Pipeline runtime configuration
 │   ├── domains.yaml              # Test domain definitions
