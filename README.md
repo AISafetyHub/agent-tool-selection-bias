@@ -102,8 +102,8 @@ OPUR (%) across eleven mainstream LLMs:
 ## Installation
 
 ```bash
-git clone https://github.com/Yuyan-B/OPTS.git
-cd OPTS
+git clone https://github.com/AISafetyHub/agent-tool-selection-bias
+cd agent-tool-selection-bias
 pip install -r requirements.txt
 ```
 
