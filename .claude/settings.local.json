@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(cp /root/slime-test/configs/slime_plugins.py intervention/rl/configs/)",
-      "Bash(cp /root/slime-test/configs/__init__.py intervention/rl/configs/)",
-      "Bash(python3 *)"
-    ]
-  }
-}
