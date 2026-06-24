@@ -1,7 +1,7 @@
 # When Lower Privileges Suffice: Investigating Over-Privileged Tool Selection in LLM Agents
 
 <p align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2606.20023"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv"></a>
   <!-- <a href="https://github.com/Yuyan-B/OPTS"><img src="https://img.shields.io/badge/Code-GitHub-blue?style=flat-square&logo=github" alt="GitHub"></a>
   <img src="https://img.shields.io/badge/EMNLP-Submission-green?style=flat-square" alt="EMNLP"> -->
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
